@@ -206,3 +206,41 @@
   tags: []
 }
 2025-11-17 13:01:36 +05:30: [Cache] ✅ HIT from Redis | Key: /index | 487ms
+2025-11-17 13:03:15 +05:30: [Cache] ✅ Cache HIT from Redis {
+  key: '/index',
+  duration: '490ms',
+  hasValue: true,
+  lastModified: '2025-11-17T07:31:14.119Z',
+  tags: []
+}
+2025-11-17 13:03:15 +05:30: [Cache] ✅ HIT from Redis | Key: /index | 490ms
+2025-11-17 13:03:15 +05:30: 
+🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄
+2025-11-17 13:03:15 +05:30: 🔄 [ISR REBUILD] getStaticProps called for ISR regeneration!
+2025-11-17 13:03:15 +05:30: 🔄 [ISR REBUILD] Timestamp: 2025-11-17T07:33:15.586Z
+2025-11-17 13:03:15 +05:30: 🔄 [ISR REBUILD] Calling /api/products...
+2025-11-17 13:03:15 +05:30: 🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄🔄
+
+2025-11-17 13:03:16 +05:30: [ISR REBUILD] ✅ Products fetched: 5 items
+2025-11-17 13:03:16 +05:30: [ISR REBUILD] Generated at: 2025-11-17T07:33:17.119Z
+
+2025-11-17 13:03:16 +05:30: [Cache] 💾 Cache SET to Local LRU { key: '/index', duration: '1ms', hasValue: true, tags: [] }
+2025-11-17 13:03:16 +05:30: [Cache] 💾 SET to Local LRU | Key: /index | 1ms
+2025-11-17 13:03:16 +05:30: [Cache] 💾 Cache SET to Redis { key: '/index', duration: '487ms', hasValue: true, tags: [] }
+2025-11-17 13:03:16 +05:30: [Cache] 💾 SET to Redis | Key: /index | 487ms
+2025-11-17 13:03:24 +05:30: [Cache] ✅ Cache HIT from Redis {
+  key: '/index',
+  duration: '508ms',
+  hasValue: true,
+  lastModified: '2025-11-17T07:33:16.340Z',
+  tags: []
+}
+2025-11-17 13:03:24 +05:30: [Cache] ✅ HIT from Redis | Key: /index | 508ms
+2025-11-17 13:03:28 +05:30: [Cache] ✅ Cache HIT from Redis {
+  key: '/index',
+  duration: '482ms',
+  hasValue: true,
+  lastModified: '2025-11-17T07:33:16.340Z',
+  tags: []
+}
+2025-11-17 13:03:28 +05:30: [Cache] ✅ HIT from Redis | Key: /index | 482ms
