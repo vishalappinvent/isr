@@ -87,7 +87,40 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  const startTime = Date.now();
+  const requestId = Math.random().toString(36).substring(7);
+  
+  // Detect if this is called from ISR rebuild
+  const isISRRebuild = req.headers['x-isr-rebuild'] === 'true';
+  const isISRContext = req.headers['x-isr-context'] === 'getStaticProps';
+  const userAgent = req.headers['user-agent'] || '';
+  
+  // Prominent logging for ISR rebuild
+  if (isISRRebuild || isISRContext) {
+    console.log('\n' + '🔄'.repeat(40));
+    console.log(`🔄 [ISR REBUILD] Products API called during ISR regeneration!`);
+    console.log(`🔄 [ISR REBUILD] Request ID: ${requestId}`);
+    console.log(`🔄 [ISR REBUILD] Timestamp: ${new Date().toISOString()}`);
+    console.log('🔄'.repeat(40) + '\n');
+  }
+  
+  // Log complete request details
+  console.log('\n' + '='.repeat(80));
+  console.log(`[API Request ${requestId}] ${req.method} ${req.url}`);
+  console.log(`[API Request ${requestId}] ISR Rebuild: ${isISRRebuild ? 'YES 🔄' : 'NO'}`);
+  console.log(`[API Request ${requestId}] ISR Context: ${isISRContext ? 'YES' : 'NO'}`);
+  console.log(`[API Request ${requestId}] Headers:`, JSON.stringify(req.headers, null, 2));
+  console.log(`[API Request ${requestId}] Query:`, JSON.stringify(req.query, null, 2));
+  console.log(`[API Request ${requestId}] Body:`, JSON.stringify(req.body, null, 2));
+  console.log(`[API Request ${requestId}] IP:`, req.socket.remoteAddress);
+  console.log(`[API Request ${requestId}] User-Agent:`, userAgent);
+  console.log('='.repeat(80) + '\n');
+
   if (req.method !== 'GET') {
+    const response = { error: 'Method not allowed' };
+    console.log(`[API Response ${requestId}] Status: 405`);
+    console.log(`[API Response ${requestId}] Body:`, JSON.stringify(response, null, 2));
+    console.log(`[API Response ${requestId}] Duration: ${Date.now() - startTime}ms\n`);
     return res.status(405).end();
   }
 
@@ -112,11 +145,29 @@ export default async function handler(
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 50));
 
-  res.status(200).json({
+  const responseData: Data = {
     products,
     generatedAt: new Date().toISOString(),
     count: products.length,
     totalPool: allProducts.length,
-  });
+  };
+
+  const duration = Date.now() - startTime;
+
+  // Log complete response details
+  console.log('\n' + '='.repeat(80));
+  if (isISRRebuild || isISRContext) {
+    console.log(`🔄 [ISR REBUILD] API Response generated successfully!`);
+  }
+  console.log(`[API Response ${requestId}] Status: 200 OK`);
+  console.log(`[API Response ${requestId}] ISR Rebuild: ${isISRRebuild ? 'YES 🔄' : 'NO'}`);
+  console.log(`[API Response ${requestId}] Headers:`, JSON.stringify(res.getHeaders(), null, 2));
+  console.log(`[API Response ${requestId}] Body:`, JSON.stringify(responseData, null, 2));
+  console.log(`[API Response ${requestId}] Duration: ${duration}ms`);
+  console.log(`[API Response ${requestId}] Products Count: ${products.length}`);
+  console.log(`[API Response ${requestId}] Generated At: ${responseData.generatedAt}`);
+  console.log('='.repeat(80) + '\n');
+
+  res.status(200).json(responseData);
 }
 

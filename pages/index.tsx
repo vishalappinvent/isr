@@ -294,7 +294,20 @@ export default function Home({ products, generatedAt }: HomeProps) {
 }
 
 // ISR Implementation using getStaticProps
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async (context) => {
+  // Detect if this is an ISR rebuild (revalidate triggered)
+  // During rebuild, Next.js calls getStaticProps again
+  const isISRRebuild = process.env.NEXT_PHASE !== 'phase-production-build' && 
+                       process.env.NODE_ENV === 'production';
+  
+  if (isISRRebuild) {
+    console.log('\n' + '🔄'.repeat(40));
+    console.log(`🔄 [ISR REBUILD] getStaticProps called for ISR regeneration!`);
+    console.log(`🔄 [ISR REBUILD] Timestamp: ${new Date().toISOString()}`);
+    console.log(`🔄 [ISR REBUILD] Calling /api/products...`);
+    console.log('🔄'.repeat(40) + '\n');
+  }
+  
   try {
     // Determine the base URL for API calls
     let baseUrl: string;
@@ -307,17 +320,29 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     
     const apiUrl = `${baseUrl}/api/products`;
     
-    const response = await fetch(apiUrl);
+    // Add header to indicate this is from ISR rebuild
+    const response = await fetch(apiUrl, {
+      headers: {
+        'X-ISR-Rebuild': isISRRebuild ? 'true' : 'false',
+        'X-ISR-Context': 'getStaticProps',
+        'User-Agent': 'Next.js-ISR',
+      },
+    });
     
     if (!response.ok) {
-      console.error(`API Error: ${response.status} ${response.statusText}`);
+      console.error(`[ISR] ❌ API Error: ${response.status} ${response.statusText}`);
       throw new Error(`Failed to fetch products: ${response.status}`);
     }
     
     const data = await response.json();
     
+    if (isISRRebuild) {
+      console.log(`[ISR REBUILD] ✅ Products fetched: ${data.products?.length || 0} items`);
+      console.log(`[ISR REBUILD] Generated at: ${data.generatedAt}\n`);
+    }
+    
     if (!data.products || !Array.isArray(data.products)) {
-      console.error('Invalid API response:', data);
+      console.error('[ISR] ❌ Invalid API response:', data);
       return {
         props: {
           products: [],
@@ -336,7 +361,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       revalidate: REVALIDATE_TIME,
     };
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error('[ISR] ❌ Error fetching products:', error);
     return {
       props: {
         products: [],
