@@ -15,7 +15,7 @@
       "env": {
         "NODE_ENV": "production",
         "PORT": "3000",
-        "NEXT_PUBLIC_APP_URL": "http://3.88.216.32:6664",
+        "NEXT_PUBLIC_APP_URL": "http://3.88.216.32:3000",
         "REDIS_URL": "redis://localhost:6379"
       }
     }
