@@ -6,8 +6,8 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     // Configure cache handler for ISR
-    // Use path.resolve instead of require.resolve for ES modules
-    incrementalCacheHandlerPath: resolve(process.cwd(), 'cache-handler.mjs'),
+    // Using CommonJS version (.js) for Next.js 13.5.6 compatibility
+    incrementalCacheHandlerPath: resolve(process.cwd(), 'cache-handler.js'),
     // Instrumentation hook disabled - not needed for Pages Router with incrementalCacheHandlerPath
     instrumentationHook: false,
   },
