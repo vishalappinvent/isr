@@ -1,0 +1,58 @@
+2025-11-17 10:27:47 +05:30: > Ready on http://0.0.0.0:6664
+2025-11-17 10:27:48 +05:30: > Ready on http://0.0.0.0:6664
+2025-11-17 10:29:48 +05:30: [Cache] Redis connecting...
+2025-11-17 10:29:48 +05:30: [Cache] Redis ready
+2025-11-17 10:29:48 +05:30: [Cache] Redis connected successfully
+2025-11-17 10:29:48 +05:30: [Cache] Redis cache handler initialized
+2025-11-17 10:29:48 +05:30: [Cache] 📦 Build detected { buildId: 'n6FpfEa6Vy05_HYfrH0NP', dev: false }
+2025-11-17 10:29:48 +05:30: [Cache] 📦 Build ID: n6FpfEa6Vy05_HYfrH0NP | Pages will be served from build cache initially
+2025-11-17 10:29:59 +05:30: [Cache] 💾 Cache SET to Local LRU { key: '/index', duration: '0ms', hasValue: true, tags: [] }
+2025-11-17 10:29:59 +05:30: [Cache] 💾 SET to Local LRU | Key: /index | 0ms
+2025-11-17 10:29:59 +05:30: [Cache] 💾 Cache SET to Redis { key: '/index', duration: '280ms', hasValue: true, tags: [] }
+2025-11-17 10:29:59 +05:30: [Cache] 💾 SET to Redis | Key: /index | 280ms
+2025-11-17 10:31:09 +05:30: [Cache] Redis connecting...
+2025-11-17 10:31:09 +05:30: [Cache] Redis ready
+2025-11-17 10:31:09 +05:30: [Cache] Redis connected successfully
+2025-11-17 10:31:09 +05:30: [Cache] Redis cache handler initialized
+2025-11-17 10:31:09 +05:30: [Cache] 📦 Build detected { buildId: 'n6FpfEa6Vy05_HYfrH0NP', dev: false }
+2025-11-17 10:31:09 +05:30: [Cache] 📦 Build ID: n6FpfEa6Vy05_HYfrH0NP | Pages will be served from build cache initially
+2025-11-17 10:31:10 +05:30: [Cache] ✅ Cache HIT from Redis {
+  key: '/index',
+  duration: '290ms',
+  hasValue: true,
+  lastModified: '2025-11-17T04:59:59.329Z',
+  tags: []
+}
+2025-11-17 10:31:10 +05:30: [Cache] ✅ HIT from Redis | Key: /index | 290ms
+2025-11-17 10:31:17 +05:30: [Cache] ✅ Cache HIT from Redis {
+  key: '/index',
+  duration: '242ms',
+  hasValue: true,
+  lastModified: '2025-11-17T04:59:59.329Z',
+  tags: []
+}
+2025-11-17 10:31:17 +05:30: [Cache] ✅ HIT from Redis | Key: /index | 242ms
+2025-11-17 10:31:22 +05:30: [Cache] ✅ Cache HIT from Redis {
+  key: '/index',
+  duration: '253ms',
+  hasValue: true,
+  lastModified: '2025-11-17T04:59:59.329Z',
+  tags: []
+}
+2025-11-17 10:31:22 +05:30: [Cache] ✅ HIT from Redis | Key: /index | 253ms
+2025-11-17 10:31:41 +05:30: [Cache] ✅ Cache HIT from Redis {
+  key: '/index',
+  duration: '293ms',
+  hasValue: true,
+  lastModified: '2025-11-17T04:59:59.329Z',
+  tags: []
+}
+2025-11-17 10:31:41 +05:30: [Cache] ✅ HIT from Redis | Key: /index | 293ms
+2025-11-17 10:31:45 +05:30: [Cache] ✅ Cache HIT from Redis {
+  key: '/index',
+  duration: '273ms',
+  hasValue: true,
+  lastModified: '2025-11-17T04:59:59.329Z',
+  tags: []
+}
+2025-11-17 10:31:45 +05:30: [Cache] ✅ HIT from Redis | Key: /index | 273ms
